@@ -50,4 +50,9 @@
     right: .6rem;
     z-index: 99;
   }
+
+  .signin {
+    display: flex;
+    align-items: center;
+  }
 }
