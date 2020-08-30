@@ -48,7 +48,9 @@ class Today extends React.Component {
   compareTimes(time, date) {
     var shortened = time.split(":");
     shortened = shortened[0] + ":" + shortened[1];
-    if(this.times.includes(shortened)) {
+
+    var mobile = window.matchMedia("only screen and (max-width: 768px)").matches;
+    if(mobile && this.times.includes(shortened)) {
       this.createNotification("Reminder", "You have a reminder set for " + shortened);
       this.times = this.times.filter((time) => time !== shortened);
     }
