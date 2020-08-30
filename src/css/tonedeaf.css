@@ -1,0 +1,838 @@
+/****************** ELEMENT DEFAULTS ******************/
+
+* {
+  margin: 0;
+  padding: 0;
+
+  transition: padding 1s;
+  transition: opacity 1s;
+  transition: color 1s;
+  transition: background 1s;
+  transition: border 1s;
+
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+/********* SPECIAL DEFUALTS*********/
+
+
+div {
+  min-height: fit-content;
+}
+
+a[href] {
+  text-decoration: none;
+  cursor: pointer !important;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+img {
+  box-shadow: 0 2px 6px 0 rgb(255 255 255 / 0%);
+  transition: box-shadow 1s ease;
+}
+
+
+/* apply to image to stretch to parent entirely if dimensions < parent width */
+.img {
+  width: 100%;
+  overflow: hidden;
+  margin: 0em 0 .5em 0;
+}
+
+.img--medium {
+  width: 7em;
+  height: 7em;
+  align-self: center;
+}
+
+.img--small {
+  width: 7em;
+  height: 7em;
+}
+
+.noclick {
+  pointer-events: none;
+}
+
+.nopadding {
+  padding: 0 !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-help {
+  cursor: help !important;
+}
+
+.link-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/****************** SCROLLBAR ******************/
+
+::-webkit-scrollbar {
+  width: .5rem;
+  height: .5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f182;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a6a6a67a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a6a6a6a8;
+}
+
+
+/****************** ANIMATION ******************/
+
+@keyframes drop {
+  from {
+    margin-top: -2rem;
+    opacity: 0;
+  }
+  to {
+    margin-top: 0rem;
+    opacity: 1;
+  }
+}
+
+.animate-drop { 
+  animation-name: drop;
+  animation-duration: .3s;
+}
+
+@keyframes load {
+  0% {
+    opacity: .5;
+    width: 0%;
+  }
+  100% {
+    opacity: 1;
+    width: 80%;
+  }
+}
+
+.animate-load {
+  width: 2rem;
+  height: 2rem;
+  margin: 10%;
+  border-radius: 100rem;
+  background: #212121;
+  animation: load 2s ease-in;
+  animation-fill-mode: both;
+}
+
+
+/* set hide by default then toggle show */
+.hide {
+  opacity: 0  !important;
+  transition: opacity 2s ease !important;
+}
+
+.show {
+  opacity: 1  !important;
+  transition: opacity 2s ease !important;
+}
+
+.progressbar {
+  width: 100%;
+}
+
+/****************** SPECIFICS ******************/
+
+
+/********* BOUNDARIES *********/
+
+.max-width {
+  width: 100% !important;
+}
+
+.min-width {
+  width: min-content !important;
+}
+
+.div--outline-off {
+  outline: dashed #00000087;
+  outline-width: thin;
+}
+
+/********* COLOR AND STYLE *********/
+
+.hover-shadow, img:hover {
+  box-shadow: 0 0 .8rem .1rem rgb(0 0 0 / 27%);
+  transition: box-shadow .3s ease;
+}
+
+.bg-blue {
+  background: #60a3e0 !important;
+}
+
+.bg-blue:hover {
+  background: #4493da !important
+}
+
+.text-white {
+  color: white !important;
+}
+
+.label-bold {
+  font-weight: bold !important;
+}
+
+.label-italic {
+  padding-top: .5rem;
+  font-style: italic;
+}
+
+.label-underline {
+  text-decoration: underline;
+}
+
+
+/********* LABELS *********/
+
+.label-super {
+  font-size: 10em;
+  font-weight: 500;
+  color: #212121;
+  transition: all 1s;
+}
+
+.label-title {
+  font-size: 2em;
+  font-weight: 500;
+  color: #212121;
+}
+
+.label-subtitle {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #212121;
+}
+
+
+.label-large {
+  font-size: 2.4em;
+  font-weight: bold;
+  color: #212121;
+}
+
+.label-sublarge {
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #212121;
+}
+
+.label-medium {
+  font-size: 1.4rem;
+  font-weight: bolder;
+  color: #212121;
+}
+
+.label-small {
+  font-size: .9rem;
+  color: #212121;
+}
+
+.label-subtext {
+  font-size: 1em;
+  font-weight: bold;
+  color: #212121;
+}
+
+.label-tiny {
+  font-size: .6em;
+  font-weight: bold;
+  color: #212121;
+}
+
+.label-nopadding {
+  padding: 0 !important;
+}
+
+.label-center {
+  padding-top: .5rem;
+  text-align: center;
+}
+
+.label-left {
+  text-align: left;
+}
+
+.label-right {
+  text-align: right;
+}
+
+.label-padding--bottom,
+.label-subtitle,
+.label-large,
+.label-sublarge,
+.label-medium {
+  padding-bottom: .5rem;
+}
+
+.label-padding--bottom-small,
+.label-small,
+.label-subtext,
+.label-tiny {
+  padding-bottom: .2rem;
+}
+
+/********* MAIN CONTAINER *********/
+
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f8f8f8;
+  color: white;
+  min-height: 100vh;
+}
+
+
+/********* FRONT PAGE *********/
+
+.div-frontpage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 2vh 10rem 2vh 10rem;
+  text-align: left;
+  align-items: center;
+}
+
+.sign {
+  color: #ffffff;
+  /*   border-bottom: solid #4493da; do not uncomment */
+  transition: color 1s ease;
+}
+
+.sign:hover {
+  /*   border-bottom: solid #4493da !important;  do not uncomment */
+  color: #60a3e0;
+  transition: color 1s ease;
+}
+
+.sign-background {
+  background: #212121;
+  border: solid #212121;
+  border-width: .5rem;
+  padding: 0 1rem 0 1rem;
+  border-radius: 2rem;
+  text-align: center;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 1.5rem;
+}
+
+
+
+
+/********* NAVBAR *********/
+
+.top {
+  display: flex;
+  text-align: left;
+  height: 4rem;
+  width: 100vw;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+
+  padding: 1rem 2em 1rem 2em;
+  background: #2d2d2d;
+
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: #e1e1e1;
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin: 0 0 0 6vw;
+  height: min-content;
+  width: 100vw;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.nav-btn {
+  border: none;
+  font-size: .9em;
+  font-weight: 100;
+  min-height: 1.5em;
+  min-width: 15vh;
+  color: #ffffff;
+  background: none;
+  transition: all .1s;
+  margin: .5em .5vw .3rem .5vw;
+  text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+  border-width: .2em !important;
+}
+
+.nav-btn:hover {
+/*   border-bottom: solid #ffffffb5 !important; */
+  border-width: .2em !important;
+}
+
+.div-log-btn {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.log-btn {
+  border-bottom: double #60a3e0 !important;
+  margin-bottom: -1px;
+}
+
+.log-btn:hover {
+  border-bottom: solid #4493da !important;
+  border-width: .2em !important;
+}
+
+.selected {
+  border-bottom: solid #ffffff !important;
+  margin-bottom: -1px !important;
+  transition: border-bottom .1s linear;
+  border-width: .2em !important;
+}
+
+/********* DIVS *********/
+
+.div-content {
+  display: flex;
+  padding-top: 2rem;
+  margin-top: 3.5rem;
+
+  padding: 2rem;
+  width: 100%;
+  
+  background: #f8f8f8;
+}
+
+.div-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  width: 40vw;
+  min-height: fit-content;
+  padding-right: .7rem;
+}
+
+.div-profile--info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.div-panels {
+  display: block;
+  padding: 0rem;
+  margin-left: 1rem;
+  width: 100%;
+}
+
+/********* TRACKS *********/
+
+.div-track {
+  display: flex;
+}
+
+.div-track--info {
+  display: flex;
+  flex-direction: column;
+  padding: .5rem 0 .2rem 1rem;
+  width: 100%;
+}
+
+.div-track--info-item {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  width: 100%;
+}
+
+.div-track--features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  padding-top: .7rem;
+  opacity: 1;
+
+  height: auto;
+  max-height: 20rem;
+  transition: opacity .5s, padding.3s, max-height .3s ease;
+}
+
+/* unused */
+.drop-down {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
+  transition: opacity .5s, padding .3s, max-height .3s ease, visible 0s;
+}
+
+.info-btn {
+  border: none;
+  border-width: 1px;
+  border-radius: 1rem;
+  font-size: .8rem;
+  font-weight: 400;
+  font-stretch: 200%;
+  color: #21212175;
+  transition: color .5s ease !important;
+  background: none;
+  transition: all .5s;
+  width: 100%;
+  text-align: center;
+}
+
+.info-btn:hover {
+  color: #212121;
+  transition: color .5s ease !important;
+}
+
+
+/* for quick item separation in lists */
+.div-item-40-60, .div-item-50-50, .div-item-60-40, .div-item {
+  display: grid;
+  width: 100%; 
+}
+
+.div-item-40-60, .div-item {
+  grid-template-columns: 40% 60%;
+}
+
+.div-item-50-50 {
+  grid-template-columns: 50% 50%;
+}
+
+.div-item-60-40 {
+  grid-template-columns: 60% 40%;
+}
+
+
+
+/********* NOWPLAYING *********/
+
+.div-nowplaying--info {
+  display: flex;
+  flex-direction: column;
+  padding: .2rem;
+}
+
+.div-nowplaying--info-full {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 0 2vw;
+  max-width: 100%;
+}
+
+.div-nowplaying-controls {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.nowplaying-full {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  padding-bottom: 1em;
+}
+
+
+/********* TUNER *********/
+
+.div-genres {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 1rem 1rem;
+}
+
+
+.div-selected-genres {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 1rem;
+}
+
+/********* SCOPE *********/
+
+.div-artist--compact {
+  position: relative;
+  width: 100%;
+  align-self: center;
+  padding: 0 .4rem 0 .4rem;
+  height: 100%;
+}
+
+.div-selected-artists {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-bottom: 1rem;
+  grid-gap: .7rem 0;
+}
+
+.center-items {
+  align-items: center;
+  margin-bottom: 0 !important;
+  height: 100% !important;
+}
+
+
+/********* PANEL *********/
+
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  border-radius: .5rem;
+  background: #eaeaea;
+  width: 100%;
+  height: min-content;
+  padding: 1rem;
+  text-align: left;
+  margin: 0rem 0 1.2rem 0;
+  box-shadow: 0 2px 6px 0 rgb(0 0 0 / 0.20);
+}
+
+.panel-compact {
+  display: flex;
+  flex-direction: column;
+  border-radius: .5rem;
+  background: #eaeaea;
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem 0 1rem 0;
+  text-align: center;
+  align-items: center;
+  box-shadow: 0 2px 6px 0 rgb(0 0 0 / 14%);
+}
+
+/* .panel:hover {
+  box-shadow: 0 2px 6px 0 rgb(0 0 0 / 43%);
+  transition: box-shadow .4s ease;
+} */
+
+.panel-side {
+  flex-direction: row;
+}
+
+.panel-selected {
+  background: #60a3e0;
+  transition: background 1 ease;
+}
+
+.panel-attribute {
+ display: flex;
+}
+
+.panel-attribute--sliders {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.side-label {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  width: 100%;
+  align-items: center;
+}
+
+
+
+/********* INPUTS *********/
+
+.input-item {
+  border: solid #b1b1b1;
+  border-radius: .5rem;
+  border-width: .5px;
+  margin: .3rem 0 .3rem 0;
+  padding: .3rem;
+  height: 2vh;
+  width: 100%;
+  transition: all .5s;
+  text-align: center;
+}
+
+.input-item:focus, .input-item:hover {
+  outline: none;
+}
+
+.input-search {
+  height: 2.5rem;
+  font-size: 1rem;
+}
+
+.option-btn {
+  border: solid #ffffff3b;
+  border-width: 1px;
+  border-radius: .3rem;
+  font-size: 1rem;
+  font-weight: 100;
+  min-height: 5vh;
+  min-width: 15vh;
+  color: #ffffff;
+  background: #333333;
+  transition: all .5s;
+  margin: .1rem 0 .1rem 0;
+  width: 100%;
+}
+
+.option-btn:hover, .add-btn:hover {
+  background: #2184b5;
+  text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+  color: #ffffff;
+}
+
+.option-btn:focus, .option-btn--selected, .add-btn:hover, .sub-btn:hover {
+  background: #299fd9;
+}
+
+.genre-btn {
+  color: #212121;
+  background: #eaeaea;
+  box-shadow: 0 2px 6px 0 rgb(0 0 0 / 14%);
+  border: solid #ffffff3b;
+  border-width: 1px;
+  border-radius: .3rem;
+  font-size: 1rem;
+  font-weight: 100;
+  height: 5vh;
+  transition: all .5s;
+  width: 100%;
+}
+
+.genre-btn:hover {
+  background: #cccccc;
+}
+
+.dark-btn {
+  color: white;
+  background: #212121;
+}
+
+/********* SCOPE BUTTONS *********/
+
+.add-btn, .sub-btn {
+  position: absolute;
+  border: solid #ffffff3b;
+  border-width: 1px;
+  border-radius: 1rem;
+  font-size: .7rem;
+  font-weight: 100;
+  color: #ffffff;
+  background: #212121;
+  transition: all .5s;
+  margin: .1rem 0 .1rem 0;
+  width: 2.5em;
+  height: 2.5em;
+  right: 2rem;
+  z-index: 99;
+}
+
+.sub-btn {
+  position: absolute;
+  right: 0;
+}
+
+
+/********* NOWPLAYING CONTROL BUTTONS *********/
+
+.div-control-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.control-btn-previous--container, .control-btn-pause--container, .control-btn-skip--container {
+  align-items: center;  
+  padding: 0 .5em 0 .5em;
+}
+
+.control-btn-previous--container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.control-btn-pause--container {
+  display: flex;
+  justify-content: center;
+}
+
+.control-btn-skip--container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.control-btn-previous, .control-btn-skip {
+  width: 2.6rem;
+  height: 2.6rem;
+}
+
+.control-btn-pause {
+  width: 3rem;
+  height: 3rem;
+  font-size: 1rem !important;
+  padding-bottom: .2rem;
+}
+
+.control-btn-previous, .control-btn-pause, .control-btn-skip {
+  border: solid #ffffff3b;
+  border-width: 1px;
+  border-radius: 5rem;
+  font-size: .7rem;
+  font-weight: 900;
+  color: #ffffff;
+  background: #212121;
+  transition: all .5s;
+  margin: .1rem 0 .1rem 0;
+}
+
+.control-btn-previous:hover, .control-btn-pause:hover, .control-btn-skip:hover {
+  background: #212121d6;
+  transition: all .1s ease;
+}
+
+.hide-controls {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+.show-controls {
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 1s ease;
+}

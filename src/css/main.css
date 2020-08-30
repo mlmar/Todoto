@@ -1,0 +1,643 @@
+/****************** ELEMENT DEFAULTS ******************/
+
+/*
+
+template {
+  display:
+  width:
+  height:
+  background:
+  color:
+  padding:
+  margin:
+}
+
+*/
+
+:root {
+  --bg-dark: #212121;
+  --bg-light: #eaeaea;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+button {
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+label {
+  width: 100%;
+}
+
+/****************** ANIMATION ******************/
+
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade { 
+  animation-name: fade;
+  animation-duration: .5s;
+}
+
+@keyframes drop {
+  from {
+    margin-top: -2rem;
+  }
+  to {
+    margin-top: 0rem;
+  }
+}
+
+.drop { 
+  animation-name: drop;
+  animation-duration: .3s;
+}
+
+/****************** SCROLLBAR ******************/
+
+::-webkit-scrollbar {
+  width: .5rem;
+  height: .5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f182;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a6a6a67a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a6a6a6a8;
+}
+
+/****************** LABELS ******************/
+
+.label-title {
+  font-size: 2em;
+  font-weight: 500;
+}
+
+.label-subtitle {
+  font-size: 1.4rem;
+}
+
+.label-large {
+  font-size: 2.4rem;
+}
+
+.label-medium {
+  font-size: 1.4rem;
+}
+
+.label-small {
+  font-size: .9rem;
+}
+
+.label-nopadding {
+  padding: 0 !important;
+}
+
+.label-center {
+  text-align: center !important;
+}
+
+.label-left {
+  text-align: left !important;
+}
+
+.label-right {
+  text-align: right !important;
+}
+
+
+
+
+.label-bold {
+  font-weight: bold !important;
+}
+
+.label-bolder {
+  font-weight: 800 !important;
+}
+
+.label-italic {
+  padding-top: .5rem;
+  font-style: italic;
+}
+
+.label-underline {
+  text-decoration: underline;
+}
+
+.label-white {
+  color: white !important;
+}
+
+
+
+
+.label-padding--bottom,
+.label-subtitle,
+.label-large,
+.label-sublarge,
+.label-medium {
+/*   padding-bottom: .5rem; */
+}
+
+.label-padding--bottom-small,
+.label-small,
+.label-subtext,
+.label-tiny {
+/*   padding-bottom: .2rem; */
+}
+
+
+
+/****************** GRID ******************/
+
+/* for quick item separation in lists */
+.div-40-60, .div-50-50, .div-60-40 {
+  display: grid;
+  width: 100%; 
+}
+
+.div-40-60 {
+  grid-template-columns: 40% 60%;
+}
+
+.div-50-50 {
+  grid-template-columns: 50% 50%;
+}
+
+.div-60-40 {
+  grid-template-columns: 60% 40%;
+}
+
+
+/********* BOUNDARIES *********/
+
+.max-width {
+  width: 100% !important;
+}
+
+.min-width {
+  width: min-content !important;
+}
+
+.max-height {
+  height: 100% !important;
+}
+
+.min-height {
+  height: min-content !important;
+}
+
+.outline {
+  outline: dashed #00000087 !important;
+  outline-width: thin !important;
+}
+
+
+
+/****************** SIGN IN ******************/
+
+.signin span {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 8rem;
+}
+
+/* The Google button */
+pwa-auth::part(googleButton) {
+  background: none;
+  font-weight: bold;
+  color: var(--bg-dark);
+  outline: none;
+}
+
+
+/****************** CONTENT ******************/
+
+.content {
+  display: grid;
+  height: 100%;
+  width: 100%;
+
+  grid-template-columns: 1fr 1fr;
+}
+
+
+/****************** REMINDERS ******************/
+
+.reminders {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: var(--bg-dark);
+  color: var(--bg-light);
+  padding: 2rem;
+}
+
+.reminders-title {
+  display: flex;
+  align-items: center;
+}
+
+.reminders-title label {
+  color: var(--bg-light) !important;
+  width: min-content;
+}
+
+.toggle-button {
+  display: flex;
+  height: 1.5rem;
+  width: 1.5rem;
+  background: var(--bg-light);
+  color: black;
+
+  border-radius: 2rem;
+
+  font-size: 1.2rem;
+  padding: .7rem;
+
+  margin: 0rem 1rem 0rem 1rem;
+
+  align-items: center;
+  justify-content: center;
+  transition: all 1s ease;
+}
+
+.toggle-button:hover {
+  background: var(--bg-dark);
+  color: white;
+  border: solid var(--bg-light);
+  border-width: .1rem;
+  transition: all .2s ease-in-out;
+}
+
+.reminders-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.reminders-input span {
+  display: grid;
+  width: 100%;
+
+  grid-template-columns: 15% 85%;
+
+  border: none;
+  border-bottom: solid var(--bg-light);
+  border-width: .099rem;
+}
+
+.reminders-input label {
+  display: flex;
+  color: var(--bg-light);
+  padding-bottom: .2rem;
+
+  font-size: 1rem;
+  font-weight: bold;
+  align-items: center;
+}
+
+.reminders-input input {
+  display: flex;
+  height: 2rem;
+  padding: 1.2rem;
+  background: none;
+  color: var(--bg-light);
+
+  border: none;
+  font-size: 1rem;
+  outline: none;
+}
+
+.reminders-input input::selection {
+  background: var(--bg-light);
+  color: var(--bg-dark);
+}
+
+.reminders-input input:focus {
+  transition: all .2s ease-in-out;
+}
+
+.reminders-input-buttons {
+  display: flex;
+  padding: .5rem 0rem 1rem 0rem;
+}
+
+.reminders-input-buttons button:not(:first-child) {
+  margin-left: 1rem;
+}
+
+.input-button {
+  background: none;
+  color: var(--bg-light);
+  height: fit-content;
+  width: fit-content;
+  padding: .3rem;
+  
+  white-space: nowrap;
+  border-bottom: solid white;
+}
+
+.reminders-item {
+  display: flex;
+  flex-direction: column;
+  padding: .5rem 0rem .5rem 0rem;
+  text-align: left;
+  transition: all .15s ease-in-out;
+}
+
+.reminders-item label {
+  word-wrap: break-word;
+  max-width: 43vw;
+}
+
+.reminders-item-selected {
+  background: var(--bg-light);
+  color: var(--bg-dark);
+  padding: .5rem;
+}
+
+input[type="date"], input[type="time"] {
+  width: 10rem;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+input::-webkit-datetime-edit-day-field:focus,
+input::-webkit-datetime-edit-month-field:focus,
+input::-webkit-datetime-edit-year-field:focus,
+input::-webkit-datetime-edit-hour-field:focus,
+input::-webkit-datetime-edit-minute-field:focus,
+input::-webkit-datetime-edit-ampm-field:focus {
+  background: var(--bg-light);
+  color: var(--bg-dark);
+}
+
+
+/****************** TODAY ******************/
+
+.today {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: var(--bg-light);
+  color: var(--bg-dark);
+  padding: 2rem;
+  align-items: flex-end;
+  position: relative;
+}
+
+.today span {
+  display: flex;
+  align-items: center;
+}
+
+.today span.label-and-button {
+  padding-right: 1rem;
+  position: absolute;
+  top: 2rem;
+  right: 12rem;
+}
+
+.force-button {
+  display: flex;
+  height: 1.5rem;
+  width: 1.5rem;
+  background: var(--bg-dark);
+  color: var(--bg-light);
+
+  border-radius: 2rem;
+
+  font-size: 1rem;
+  padding: .7rem;
+
+  margin: 0rem 1rem 0rem 1rem;
+
+  align-items: center;
+  justify-content: center;
+  transition: all 1s ease;
+}
+
+.force-button:hover {
+  background: var(--bg-light);
+  color: var(--bg-dark);
+  border: solid var(--bg-dark);
+  border-width: .1rem;
+  transition: all .2s ease-in-out;
+}
+
+.today label {
+  text-align: right;
+  width: 100% !important;
+}
+
+
+/****************** SCREEN ******************/
+
+.screen {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background: var(--bg-light);  
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  transition: all .4s ease;
+  z-index: 99;
+}
+
+.screen-up {
+  margin-top: -100vh;
+}
+
+.screen label {
+  color: var(--bg-dark);
+}
+
+.label-main {
+  font-size: 8rem;
+  font-weight: bolder;
+}
+
+.label-submain {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+/****************** CLOCK ******************/
+
+.clock {
+  width: min-content;
+  height: min-content;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--bg-dark);
+}
+
+
+
+/****************** BUTTONS ******************/
+
+.button {
+  height: 2rem;
+  width: 5rem;
+  background: #f4f4f4;
+  padding: .5rem;
+  
+  border: none;
+  border-radius: .2rem;
+  transition: background .3s ease;
+}
+
+.button:hover {
+  cursor: pointer;
+  background: #f9f9f9;
+  transition: background .3s ease;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:active, button:after {
+  background: #d6d6d6 !important;
+  transition: all .3s;
+}
+
+
+.button-dark {
+  background: #2e2e2e;
+  color: white;
+}
+
+.button-dark:hover {
+  background: #000000bd;
+}
+
+.button-dark:active, .button-dark:after {
+  background: #2a2a2a !important;
+  transition: all .3s;
+}
+
+
+
+.button-blue {
+  background: #488ed9;
+  color: white;
+}
+
+.button-blue:hover {
+  background: #539deb;
+}
+
+.button-blue:active, .button-bluek:after {
+  background: #4287d2 !important;
+  transition: all .3s;
+}
+
+
+
+.button-green {
+  background: #46dc46;
+  color: white;
+}
+
+.button-green:hover {
+  background: #59e759;
+}
+
+.button-green:active, .button-green:after {
+  background: #3dd13d !important;
+  transition: all .3s;
+}
+
+
+
+.button-red {
+  background: #dc4646;
+  color: white;
+}
+
+.button-red:hover {
+  background: #e75959;
+}
+
+.button-red:active, .button-red:after{
+  background: #cf3d3d !important;
+  transition: all .3s;
+}
+
+
+
+
+/****************** SPECIFICS ******************/
+
+.noclick {
+  pointer-events: none;
+}
+
+.nopadding {
+  padding: 0;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-help {
+  cursor: help;
+}
+
+.round {
+  border-radius: .5rem;
+}
+
+.darkfg {
+  color: var(--bg-dark);
+}
+
+.darkbg {
+  background: var(--bg-dark);
+}
+
+.darkbg label, pre {
+  color: white
+}
