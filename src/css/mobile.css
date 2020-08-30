@@ -1,0 +1,53 @@
+.portrait {
+  display: none;
+}
+
+@media only screen 
+  and (max-width: 768px) {
+
+  .portrait {
+    display: initial;
+  }
+
+  .landscape {
+    display: none;
+  } 
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .reminders {
+    position: fixed;
+    z-index: 1;
+  }
+
+  .today {
+    position: fixed;
+    z-index: 3;
+    transition: all .4s ease;
+  }
+
+  .switch-button {
+    display: flex;
+    height: 1.5rem;
+    width: 1.5rem;
+    background: var(--bg-dark);
+    color: var(--bg-light);
+
+    border-radius: 2rem;
+
+    font-size: .9rem;
+    padding: .4rem;
+
+    align-items: center;
+    justify-content: center;
+    transition: all 1s ease;
+
+    position: fixed;
+    top: .6rem;
+    right: .6rem;
+    z-index: 99;
+  }
+}

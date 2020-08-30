@@ -3,6 +3,8 @@ import React from 'react';
 /*** CSS ***/
 import './App.css';
 import './css/main.css';
+import './css/mobile.css';
+
 
 /*** COMPONENTS ***/
 import Screen from './js/screen/Screen.js';
@@ -35,6 +37,7 @@ class App extends React.Component {
 
     this.setNav = this.setNav.bind(this);
     this.screen = React.createRef();
+    this.today = React.createRef();
     
     this.addReminder = this.addReminder.bind(this);
     this.getReminders = this.getReminders.bind(this);
@@ -162,23 +165,28 @@ class App extends React.Component {
    *    @   else -- show login page
    */
   renderControl(index) {
+    var mobile = window.matchMedia("only screen and (max-width: 768px)").matches;
+
     var content = "";
-    //var nav = <Nav items={this.state.navItems} handleNav={this.setNav}/>
+    var screen = "";
 
     if(this.state.user) {
       switch(index) {
 
         case 0:
+          screen = !mobile ? <Screen ref={this.screen}/> : "";
           content =
             <React.Fragment>
-              <Screen ref={this.screen}/>
+              {screen}
+
+              <button className="switch-button portrait" onClick={() => this.today.current.switch()}> &#8609; </button>
               <ReminderList 
                 reminders={this.state.reminders}
                 handleAdd={this.addReminder}
                 handleDelete={this.deleteReminder}
                 handleManyDelete={this.deleteManyReminders}
               />
-              <Today reminders={this.state.reminders} handleScreen={() => this.screen.current.force()}/>
+              <Today reminders={this.state.reminders} handleScreen={() => this.screen.current.force()} ref={this.today}/>
             </React.Fragment>
           break;
         
@@ -187,9 +195,10 @@ class App extends React.Component {
           break;
       }
     } else {
+      screen = !mobile ? <Screen disableSwipe="true"/> : "";
       content =
         <div className="signin">
-          <Screen disableSwipe="true"/>
+          {screen}
           <span>
             <pwa-auth
               appearance="list"

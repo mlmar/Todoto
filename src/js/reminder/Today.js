@@ -12,11 +12,17 @@ class Today extends React.Component {
 
     this.currentTime = "";
     this.times = [];
-
+    
+    this.today = React.createRef();
+    this.switch = this.switch.bind(this);
 
     this.handleItemRender = this.handleItemRender.bind(this);
-    this.comapreTimes = this.compareTimes.bind(this);
+    this.compareTimes = this.compareTimes.bind(this);
     this.createNotification = this.createNotification.bind(this);
+  }
+
+  switch() {
+    this.today.current.classList.toggle("screen-up");
   }
 
   /*  callback : return item to be rendered in a List component
@@ -30,7 +36,7 @@ class Today extends React.Component {
         time={reminder.time}
         title={reminder.title}
         text={reminder.text}
-        key={reminder.id}
+        key={i}
         onClick=""
         hideDate="true"
       />
@@ -71,10 +77,10 @@ class Today extends React.Component {
     this.times = temp;
 
     return (
-      <div className="today">
+      <div className="today" ref={this.today}>
         <span>
           <span className="label-and-button">
-            <button className="force-button" onClick={this.props.handleScreen}> &#8609; </button>
+            <button className="force-button landscape" onClick={this.props.handleScreen}> &#8609; </button>
             <label className="label-large label-bolder"> Today </label>
           </span>
           <Clock getTime={(time, date) => this.compareTimes(time,date)} clockStyle="clock"/>
