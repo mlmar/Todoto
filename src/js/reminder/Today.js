@@ -50,7 +50,7 @@ class Today extends React.Component {
     shortened = shortened[0] + ":" + shortened[1];
 
     var mobile = window.matchMedia("only screen and (max-width: 768px)").matches;
-    if(mobile && this.times.includes(shortened)) {
+    if(!mobile && this.times.includes(shortened)) {
       this.createNotification("Reminder", "You have a reminder set for " + shortened);
       this.times = this.times.filter((time) => time !== shortened);
     }

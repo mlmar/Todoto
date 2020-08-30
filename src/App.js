@@ -155,7 +155,7 @@ class App extends React.Component {
     this.authListener();
     
     var mobile = window.matchMedia("only screen and (max-width: 768px)").matches;
-    if(mobile && Notification.permission !== "granted") {
+    if(!mobile && Notification.permission !== "granted") {
       Notification.requestPermission();
     }
   }
