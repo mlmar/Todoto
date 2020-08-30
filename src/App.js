@@ -72,7 +72,7 @@ class App extends React.Component {
         console.warn("Unverified request");
       } else {
         console.log(response);
-        this.getReminders();
+        this.getReminders(this.state.user);
       }
     }, query);  
   }
@@ -80,7 +80,7 @@ class App extends React.Component {
   /*  get updated list of all reminders
    *    @ from addReminder() or componentDidMount
    */
-  getReminders() {
+  getReminders(user) {
     this.reminderService.getReminders((response) => {
       if(response.status === 2) {
         this.setState({ user : null});
@@ -89,7 +89,7 @@ class App extends React.Component {
         console.log(response);
         this.setState({ reminders : response.data})
       }
-    }, { user : this.state.user });
+    }, { user : user });
   }
 
   /*  callback : use reminderService to delete single reminder by id
@@ -101,7 +101,7 @@ class App extends React.Component {
         console.warn("Unverified request");
       } else {
        console.log(response);
-       this.getReminders();
+       this.getReminders(this.state.user);
       }
     }, {id: id, user : this.state.user });
   }
@@ -115,7 +115,7 @@ class App extends React.Component {
         console.warn("Unverified request");
       } else {
         console.log(response);
-        this.getReminders();
+        this.getReminders(this.state.user);
       }
     }, {ids: ids, user : this.state.user });
   }
@@ -138,7 +138,7 @@ class App extends React.Component {
               user : signIn
             }, () => {
               console.log(this.state.user) 
-              this.getReminders();
+              this.getReminders(this.state.user);
             });
           } else {
             this.setState({ user : null });
