@@ -34,16 +34,21 @@ class App extends React.Component {
 
     this.googleAuthService = new GoogleAuthService();
     this.reminderService = new ReminderService();
-
-    this.setNav = this.setNav.bind(this);
-    this.screen = React.createRef();
-    this.today = React.createRef();
     
+    this.screen = React.createRef();
+    this.reminderList = React.createRef();
+    this.today = React.createRef();
+
+    this.switchBtn = React.createRef();
+    this.switch = this.switch.bind(this);
+    
+    this.setNav = this.setNav.bind(this);
+    this.authListener = this.authListener.bind(this);
+
     this.addReminder = this.addReminder.bind(this);
     this.getReminders = this.getReminders.bind(this);
     this.deleteReminder = this.deleteReminder.bind(this);
     this.deleteManyReminders = this.deleteManyReminders.bind(this);
-    this.authListener = this.authListener.bind(this);
   }
   
   /*  callback : set selectedIndex based on navigation selection
@@ -52,6 +57,15 @@ class App extends React.Component {
   setNav(index) {
     this.setState({ selectedIndex : index });
     console.log("selectedIndex = " + index);
+  }
+
+  /*  Mobile toggle button action
+   *    switch between ReminderList and Today visibility
+   */
+  switch() {
+    this.reminderList.current.switch();
+    this.today.current.switch();
+    this.switchBtn.current.classList.toggle("switch-button-light");
   }
 
   /********************** SERVICE CALLS **********************/
@@ -136,7 +150,7 @@ class App extends React.Component {
           if(response.status === 0) {
             this.setState({
               user : signIn
-            }, () => {
+            }, () => { // use setState callback to avoid 404
               console.log(this.state.user) 
               this.getReminders(this.state.user);
             });
@@ -154,6 +168,7 @@ class App extends React.Component {
   componentDidMount() {
     this.authListener();
     
+    // only request notification access if not mobile 
     var mobile = window.matchMedia("only screen and (max-width: 768px)").matches;
     if(!mobile && Notification.permission !== "granted") {
       Notification.requestPermission();
@@ -180,12 +195,13 @@ class App extends React.Component {
             <React.Fragment>
               {screen}
 
-              <button className="switch-button portrait" onClick={() => this.today.current.switch()}> &#8609; </button>
+              <button className="switch-button portrait" onClick={this.switch} ref={this.switchBtn}> &#8609; </button>
               <ReminderList 
                 reminders={this.state.reminders}
                 handleAdd={this.addReminder}
                 handleDelete={this.deleteReminder}
                 handleManyDelete={this.deleteManyReminders}
+                ref={this.reminderList}
               />
               <Today reminders={this.state.reminders} handleScreen={() => this.screen.current.force()} ref={this.today}/>
             </React.Fragment>

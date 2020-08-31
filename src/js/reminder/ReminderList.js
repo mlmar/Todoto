@@ -36,6 +36,9 @@ class ReminderList extends React.Component {
     this.inputTitle = React.createRef();
     this.inputText = React.createRef();
     
+    this.reminders = React.createRef();
+    this.switch = this.switch.bind(this);
+
     this.handleText = this.handleText.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
     this.handleManyDelete = this.handleManyDelete.bind(this);
@@ -43,6 +46,10 @@ class ReminderList extends React.Component {
     this.handleItemRender = this.handleItemRender.bind(this);
   
     this.renderInput = this.renderInput.bind(this);
+  }
+
+  switch() {
+    this.reminders.current.classList.toggle("hide");
   }
 
   /*  update newReminder as user types
@@ -163,7 +170,7 @@ class ReminderList extends React.Component {
     var deleteButton = this.state.selected.length > 0  && !this.state.input ? <button className="input-button fade" onClick={this.handleManyDelete}> Delete Reminders </button> : "";
 
     return (
-      <div className="reminders">
+      <div className="reminders hide" ref={this.reminders}>
         <span className="reminders-title">
           <label className="label-large label-bold label-left label-white"> 
             Reminders

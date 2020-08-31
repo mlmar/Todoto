@@ -22,7 +22,7 @@ class Today extends React.Component {
   }
 
   switch() {
-    this.today.current.classList.toggle("screen-up");
+    this.today.current.classList.toggle("hide");
   }
 
   /*  callback : return item to be rendered in a List component
@@ -83,9 +83,9 @@ class Today extends React.Component {
         <span>
           <span className="label-and-button">
             <button className="force-button landscape" onClick={this.props.handleScreen}> &#8609; </button>
-            <label className="label-large label-bolder"> Today </label>
+            <Clock date="true" clockStyle="label-large label-bolder"/>
           </span>
-          <Clock getTime={(time, date) => this.compareTimes(time,date)} clockStyle="clock"/>
+          <Clock getTime={(time, date) => this.compareTimes(time, date)} clockStyle="clock"/>
         </span>
         <List items={sortedReminders} render={this.handleItemRender}/>
       </div>
