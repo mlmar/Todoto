@@ -19,12 +19,11 @@
   }
 
   .reminders {
-    position: fixed;
     z-index: 1;
+    overflow: auto;
   }
 
   .today {
-    position: fixed;
     z-index: 3;
     transition: all .4s ease;
   }

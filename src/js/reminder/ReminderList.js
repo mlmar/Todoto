@@ -109,7 +109,7 @@ class ReminderList extends React.Component {
         time={reminder.time}
         title={reminder.title}
         text={reminder.text}
-        key={i}
+        key={i + reminder.time + reminder.id}
         onClick={this.handleSelection}
       />
 
