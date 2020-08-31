@@ -33,6 +33,15 @@
     padding-bottom: .5rem;
   }
 
+  .reminders label {
+    min-width: 100%;
+  }
+
+  .toggle-button {
+    padding: 0;
+    font-size: 1rem;
+  }
+
   .today {
     display: flex;
     z-index: 3;
@@ -59,8 +68,7 @@
 
     border-radius: 2rem;
 
-    font-size: .9rem;
-    padding: .4rem;
+    font-size: 1rem;
 
     align-items: center;
     justify-content: center;
