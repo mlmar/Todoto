@@ -83,4 +83,12 @@
     background: var(--bg-light);
     color: var(--bg-dark);
   }
+
+  .label-main {
+    font-size: 6rem;
+  }
+
+  .label-submain {
+    font-size: 3rem;
+  }
 }
