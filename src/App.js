@@ -166,11 +166,6 @@ class App extends React.Component {
    /********************** END SERVICE CALLS **********************/
 
   componentDidMount() {
-    var iOS = !!navigator.platform && /i(Phone|Pad|Pod)/.test(navigator.platform);
-    if (iOS) {
-        document.querySelector('link[rel="manifest"]').setAttribute("rel", "no-on-ios");
-    }
-    
     this.authListener();
     
     // only request notification access if not mobile 
