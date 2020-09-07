@@ -5,6 +5,12 @@
 @media only screen 
   and (max-width: 768px) {
 
+  html, body {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+  }
+
   .portrait {
     display: initial;
   }
@@ -20,6 +26,7 @@
   .content {
     display: flex;
     flex-direction: column;
+    height: fit-content;
   }
 
   .reminders {
