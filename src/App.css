@@ -3,6 +3,7 @@ html, body, #root, .App {
   text-align: center;
   flex: 1 1;
   background: none;
+  min-height: 100%;
   
   overflow: overlay;
 }
