@@ -181,21 +181,17 @@ class App extends React.Component {
    *    @   else -- show login page
    */
   renderControl(index) {
-    var mobile = window.matchMedia("only screen and (max-width: 768px)").matches;
-
     var content = "";
-    var screen = "";
 
     if(this.state.user) {
       switch(index) {
 
         case 0:
-          screen = !mobile ? <Screen ref={this.screen}/> : "";
           content =
             <React.Fragment>
-              {screen}
+              <Screen ref={this.screen}/>
 
-              <button className="switch-button portrait" onClick={this.switch} ref={this.switchBtn}> &#8609; </button>
+              <button className="switch-button portrait" onClick={this.switch} ref={this.switchBtn}> &#8766; </button>
               <ReminderList 
                 reminders={this.state.reminders}
                 handleAdd={this.addReminder}
@@ -212,10 +208,9 @@ class App extends React.Component {
           break;
       }
     } else {
-      screen = !mobile ? <Screen disableSwipe="true"/> : "";
       content =
         <div className="signin">
-          {screen}
+          <Screen disableSwipe="true"/>
           <span>
             <pwa-auth
               appearance="list"

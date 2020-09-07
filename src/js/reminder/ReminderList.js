@@ -20,8 +20,7 @@ class ReminderList extends React.Component {
 
     this.newReminder = {
       id    : 0,
-      date  : this.time.getDate(true, true),
-      time  : this.time.getTime(),
+      date  : new Date(),
       title : "Title",
       text  : "Text",
       email : ""
@@ -60,8 +59,8 @@ class ReminderList extends React.Component {
     var value = e.target.value;
 
     if(id === "date") {
-      var reorderedDate = value.split("-"); // reorder to mm-dd-yyyy
-      reorderedDate = reorderedDate[1] + "-" + reorderedDate[2] + "-" + reorderedDate[0];
+      var reorderedDate = new Date(value); // reorder to mm-dd-yyyy
+      reorderedDate = reorderedDate.getMonth() + "-" + reorderedDate.getDate() + "-" + reorderedDate.getYear();
       this.newReminder.date = reorderedDate;
     } else {
       this.newReminder[id] = value;
@@ -75,8 +74,7 @@ class ReminderList extends React.Component {
       var length = this.props.reminders.length;
       this.newReminder.id = this.props.reminders.length > 0 ? this.props.reminders[length - 1].id + 1: 0;
 
-      this.newReminder.date = this.newReminder.date === "" ? "Date not specified" : this.newReminder.date;
-      this.newReminder.time = this.newReminder.time === "" ? "Time not specified" : this.newReminder.time;
+      this.newReminder.date = this.newReminder.date === "" ? "Date not specified" : new Date(this.newReminder.date);
       this.props.handleAdd(this.newReminder);
 
       console.log(this.newReminder.id);
@@ -113,10 +111,9 @@ class ReminderList extends React.Component {
       <Reminder
         id={reminder.id}
         date={reminder.date}
-        time={reminder.time}
         title={reminder.title}
         text={reminder.text}
-        key={i + reminder.time + reminder.id}
+        key={i + reminder.id + reminder.date + reminder.title + reminder.text}
         onClick={this.handleSelection}
       />
 
@@ -136,11 +133,11 @@ class ReminderList extends React.Component {
         <div className="reminders-input fade">
           <span>
             <label> Date </label>
-            <input type="date" id="date" defaultValue={this.time.getDate(true)} autoComplete="off" onChange={this.handleText} ref={this.inputDate} />
+            <input type="date" id="date" defaultValue={new Date().toLocaleDateString('en-CA')} autoComplete="off" onChange={this.handleText} ref={this.inputDate} />
           </span>
           <span>
             <label> Time </label>
-            <input type="time" id="time" defaultValue={this.time.getTime()} autoComplete="off" onChange={this.handleText} ref={this.inputTime} />
+            <input type="time" id="time" defaultValue={this.time.getMilitaryTime()} autoComplete="off" onChange={this.handleText} ref={this.inputTime} />
           </span>
           <span>
             <label> Title </label>
@@ -164,10 +161,11 @@ class ReminderList extends React.Component {
 
     // prop arrays ar still affected .push, .slice, .sort, etc. so make a copy
     var reminders = [...this.props.reminders];
-    var sortedReminders = reminders.sort((a, b) => { return a.date.localeCompare(b.date) || a.time.localeCompare(b.time) })
+    var sortedReminders = reminders.sort((a, b) => a.date.localeCompare(b.date) );
     
     // do not append delete button to input if it is open
-    var deleteButton = this.state.selected.length > 0  && !this.state.input ? <button className="input-button fade" onClick={this.handleManyDelete}> Delete Reminders </button> : "";
+    var deleteButton = this.state.selected.length > 0  && !this.state.input ? 
+      <button className="input-button fade" onClick={this.handleManyDelete}> Delete Reminders </button> : "";
 
     return (
       <div className="reminders hide" ref={this.reminders}>

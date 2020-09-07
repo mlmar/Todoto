@@ -10,18 +10,23 @@ class Clock extends React.Component {
 
     this.state = {
       time : this.time.getTime(true),
-      date : this.time.getDate(false)
+      date : this.time.getDate(this.props.showYear === "true")
     }
   }
 
-  // get time every escond
+  // get time every second
+  // return time and date in a callback if necessary
   componentDidMount() {
     this.timer = setInterval(() => {
-      this.setState({ time : this.time.getTime(true), date : this.time.getDate(false) }, () => {
-        if(this.props.getTime) {
-          this.props.getTime(this.state.time, this.state.date);
+      this.setState({ 
+        time : this.time.getTime(true, this.props.showAMPM), 
+        date : this.time.getDate(this.props.showYear === "true") 
+      }, () => {
+          if(this.props.getTime) {
+            this.props.getTime(this.state.time, this.state.date);
+          }
         }
-      });
+      );
     }, 1000)
 
   }

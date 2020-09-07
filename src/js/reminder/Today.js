@@ -33,7 +33,6 @@ class Today extends React.Component {
       <Reminder
         id={reminder.id}
         date={reminder.date}
-        time={reminder.time}
         title={reminder.title}
         text={reminder.text}
         key={i}
@@ -73,10 +72,12 @@ class Today extends React.Component {
   }
 
   render() {
+    var today = new Date().toLocaleDateString();
+    
     // prop arrays ar still affected .push, .slice, .sort, etc. so make a copy
     var reminders = [...this.props.reminders];
-    reminders = reminders.filter((item) => item.date === this.time.getDate(false, true));
-    var sortedReminders = reminders.sort((a, b) => { return a.time.localeCompare(b.time) })
+    reminders = reminders.filter((item) => new Date(item.date).toLocaleDateString() === today);
+    var sortedReminders = reminders.sort((a, b) => { return a.date.localeCompare(b.date) })
     
     // store only times in a stack for notifications
     var temp = []
@@ -88,9 +89,9 @@ class Today extends React.Component {
         <span>
           <span className="label-and-button">
             <button className="force-button landscape" onClick={this.props.handleScreen}> &#8609; </button>
-            <Clock date="true" clockStyle="label-large label-bolder"/>
+            <Clock date="true" showYear="true" clockStyle="label-large label-bolder"/>
           </span>
-          <Clock getTime={(time, date) => this.compareTimes(time, date)} clockStyle="clock"/>
+          <Clock getTime={(time, date) => this.compareTimes(time, date)}clockStyle="clock"/>
         </span>
         <List items={sortedReminders} render={this.handleItemRender}/>
       </div>

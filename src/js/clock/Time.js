@@ -5,28 +5,38 @@ class Time {
   }
 
   // return date (yyyy/mm/dd) with padded 0's
-  getDate(showYear = false, yearLast = false) {
+  getDate(showYear = false) {
     var today = new Date();
-    var dd = String(today.getDate()).padStart(2, "0");
-    var mm = String(today.getMonth() + 1).padStart(2, "0");
-    var yyyy = today.getFullYear();
+    today = showYear ? 
+      today.toLocaleDateString() :
+      today.toLocaleDateString("en-US", { month: "numeric", day: "numeric" });
 
-    today = showYear ? yyyy + "-" + mm + '-' + dd : mm + "-" + dd;
-    today = yearLast ? mm + "-" + dd + "-" + yyyy : today;
-    
+    today = today.replace(/\//g, '-');
+
     return today;
   }
 
   // return time with padded 0's
-  getTime(showSeconds = false) {
+  getTime(showSeconds = false, showAMPM = false) {
+    var today = new Date();
+    today = showSeconds ? 
+      today.toLocaleTimeString("en-US", { hour: "numeric", hour12: true, minute: "numeric", second: "numeric" }) :
+      today.toLocaleTimeString("en-US", { hour: "numeric", hour12: true, minute: "numeric"});
+
+    today = showAMPM ? today : today.replace("AM", "").replace("PM", "");
+
+    return today;
+  }
+
+  getMilitaryTime(showSeconds = false) {
     var today = new Date();
     var hh = String(today.getHours()).padStart(2, "0");
     var mm = String(today.getMinutes()).padStart(2, "0");
     var ss = String(today.getSeconds()).padStart(2, "0");
-
-    // determine whether or not to show seconds
-    var time = showSeconds ? hh + ":" + mm + ":" + ss : hh + ":" + mm;
-    return time;
+    
+    return showSeconds ? 
+      hh + ":" + mm + ":" + ss : 
+      hh + ":" + mm;
   }
 }
 
