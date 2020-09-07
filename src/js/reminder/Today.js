@@ -89,7 +89,7 @@ class Today extends React.Component {
         <span>
           <span className="label-and-button">
             <button className="force-button landscape" onClick={this.props.handleScreen}> &#8609; </button>
-            <Clock date="true" showYear="true" clockStyle="label-large label-bolder"/>
+            <Clock date="true" clockStyle="label-large label-bolder"/>
           </span>
           <Clock getTime={(time, date) => this.compareTimes(time, date)}clockStyle="clock"/>
         </span>

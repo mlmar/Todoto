@@ -76,7 +76,7 @@
     position: absolute;
     top: 2.9rem;
     right: 2rem;
-    z-index: 99;
+    z-index: 50;
   }
 
   .switch-button-light {
