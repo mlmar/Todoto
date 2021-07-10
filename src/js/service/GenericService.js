@@ -1,5 +1,5 @@
-// const host = "http://localhost:8000/";
-const host = "https://todoto-auth.vercel.app/";
+const host = "http://localhost:3300/";
+// const host = "https://todoto-auth.vercel.app/";
 
 /*  GenericService class
  *

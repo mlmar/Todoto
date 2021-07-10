@@ -81,7 +81,9 @@ class App extends React.Component {
     }
     
     this.reminderService.addReminder((response) => {
-      if(response.status === 2) {
+      if(response.status === 3) {
+        console.warn("Invalid token");
+      } else if(response.status === 2) {
         this.setState({ user : null});
         console.warn("Unverified request");
       } else {
@@ -96,21 +98,25 @@ class App extends React.Component {
    */
   getReminders(user) {
     this.reminderService.getReminders((response) => {
-      if(response.status === 2) {
+      if(response.status === 3) {
+        console.warn("Invalid token");
+      } else if(response.status === 2) {
         this.setState({ user : null});
         console.warn("Unverified request");
       } else {
         console.log(response);
         this.setState({ reminders : response.data})
       }
-    }, { user : user });
+    }, { user });
   }
 
   /*  callback : use reminderService to delete single reminder by id
    */
   deleteReminder(id) {
     this.reminderService.deleteReminder((response) => {
-      if(response.status === 2) {
+      if(response.status === 3) {
+        console.warn("Invalid token");
+      } else if(response.status === 2) {
         this.setState({ user : null});
         console.warn("Unverified request");
       } else {
@@ -124,7 +130,9 @@ class App extends React.Component {
    */
   deleteManyReminders(ids) {
     this.reminderService.deleteManyReminders((response) => {
-      if(response.status === 2) {
+      if(response.status === 3) {
+        console.warn("Invalid token");
+      } else if(response.status === 2) {
         this.setState({ user : null});
         console.warn("Unverified request");
       } else {
@@ -158,7 +166,7 @@ class App extends React.Component {
             this.setState({ user : null });
             console.warn("Could not verify user");
           }
-        }, signIn );
+        }, { user : signIn } );
       }
     });
   }
