@@ -1,5 +1,5 @@
-// const host = "http://localhost:3300/";
-const host = "https://todoto-auth.vercel.app/";
+const host = process.env.REACT_APP_DEV ? "http://localhost:3300/" : "https://todoto-auth.vercel.app/";
+
 
 /*  GenericService class
  *
